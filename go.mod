@@ -1,4 +1,4 @@
-module aws/docker-login
+module github.com/KaiSforza/aws-docker-login
 
 go 1.23.7
 
