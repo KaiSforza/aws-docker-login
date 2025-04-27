@@ -15,21 +15,7 @@ import (
 func main() {
 	ctx := context.Background()
 
-	region := os.Getenv("AWS_DEFAULT_REGION")
-	if region == "" {
-		fmt.Fprintln(os.Stderr, "Missing AWS_DEFAULT_REGION environment variable")
-		os.Exit(1)
-	}
-	aws_profile := os.Getenv("AWS_PROFILE")
-	if aws_profile == "" {
-		fmt.Fprintln(os.Stderr, "Using default profile. Set AWS_PROFILE variable to use a different one.")
-    aws_profile = "default"
-	}
-
-	cfg, err := config.LoadDefaultConfig(ctx,
-    config.WithRegion(region),
-    config.WithSharedConfigProfile(aws_profile),
-  )
+	cfg, err := config.LoadDefaultConfig(ctx)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "failed to load AWS config:", err)
 		os.Exit(1)
@@ -56,7 +42,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Just print the password
 	fmt.Println(password)
 }
 
